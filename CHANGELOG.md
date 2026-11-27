@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.2] - 2026-11-27
+
+### Fixed
+
+ - Убрано предупреждение Home Assistant «accesses `DeviceEntry.config_entries`, which is deprecated» ([#26](https://github.com/ru-smarthome/hass-mygas/issues/26)). Запись конфигурации устройства теперь ищется через `device_registry.async_get_device_and_config_entry_for_domain`, как рекомендует Home Assistant. Через 2027.10.0 старый способ перестал бы работать.
+
+### Changed
+
+ - Минимальная версия Home Assistant повышена до 2026.9.0: хелпер `async_get_device_and_config_entry_for_domain` появился в этой версии. Пользователям более старых версий остаётся доступна версия 2.5.1.
+
 ## [2.5.1] - 2026-11-20
 
 ### Changed

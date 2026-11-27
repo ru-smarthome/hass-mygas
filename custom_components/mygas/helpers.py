@@ -35,11 +35,11 @@ async def async_get_coordinator(
 ) -> MyGasCoordinator:
     """Get coordinator for device id."""
     device_entry = await async_get_device_entry_by_device_id(hass, device_id)
-    for entry_id in device_entry.config_entries:
-        if (config_entry := hass.config_entries.async_get_entry(entry_id)) is None:
-            continue
-        if config_entry.domain == DOMAIN:
-            return config_entry.runtime_data
+    _, config_entry = dr.async_get_device_and_config_entry_for_domain(
+        hass, device_entry.id, domain=DOMAIN
+    )
+    if config_entry is not None:
+        return config_entry.runtime_data
 
     raise ValueError(f"Config entry for {device_id} not found")
 
